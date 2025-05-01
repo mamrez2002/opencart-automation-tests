@@ -3,9 +3,11 @@
 
 
 import time
+from selenium import webdriver
+
 
 class ForgottenPasswordPage:
-    def __init__(self, driver):
+    def __init__(self, driver:webdriver.Chrome):
         self.driver = driver
         self.email = '//*[(@id = "input-email")]'
         self.continue_button = '//*[contains(concat( " ", @class, " " ), concat( " ", "btn-primary", " " ))]'
@@ -32,4 +34,4 @@ class ForgottenPasswordPage:
     def get_page_title(self):
         return self.driver.title
 
-    
+

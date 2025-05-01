@@ -2,10 +2,11 @@
 # https://demo.opencart.com/en-gb?route=account/login
 
 import time
+from selenium import webdriver
 
 
 class LoginPage:
-    def __init__(self, driver):
+    def __init__(self, driver:webdriver.Chrome):
         self.driver = driver
         self.email = '//*[(@id = "input-email")]'
         self.password = '//*[(@id = "input-password")]'

@@ -2,23 +2,26 @@
 # https://demo.opencart.com/en-gb?route=account/register
 
 import time
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+
 
 class RegisterPage:
-    def __init__(self , driver):
+    def __init__(self , driver:webdriver.Chrome):
         self.driver = driver
         self.first_name = '//*[(@id = "input-firstname")]'
         self.last_name = '//*[(@id = "input-lastname")]'
         self.email = '//*[(@id = "input-email")]'
-        self.password = '//*[(@id = "input-email")]'
+        self.password = '//*[@id="input-password"]'
         self.privacy_policy = '//*[contains(concat( " ", @class, " " ), concat( " ", "form-check-inline", " " ))]//*[contains(concat( " ", @class, " " ), concat( " ", "form-check-input", " " ))]'
         self.continue_button = '//*[contains(concat( " ", @class, " " ), concat( " ", "btn-primary", " " ))]'
         self.login_link = '//*[(@id = "content")]//p//a'
 
-        self.error_first_name = '//*[(@id = "error-firstname")]'
-        self.error_last_name = '//*[(@id = "error-lastname")]'
-        self.error_email = '//*[(@id = "error-email")]'
-        self.error_password = '//*[(@id = "error-password")]'
-        self.alert = '//*[(@id = "alert")]'
+        self.error_first_name = '//*[@id="error-firstname"]'
+        self.error_last_name = '//*[@id="error-lastname"]'
+        self.error_email_id = 'error-email'
+        self.error_password = '//*[@id="error-password"]'
+        self.alert = '//*[contains(concat( " ", @class, " " ), concat( " ", "alert-dismissible", " " ))]'
 
 
     def set_first_name(self, first_name):
@@ -43,19 +46,34 @@ class RegisterPage:
         self.driver.find_element('xpath', self.login_link).click()
 
     def get_error_first_name(self):
-        return self.driver.find_element('xpath', self.error_first_name).text
+        try:
+            return self.driver.find_element('xpath', self.error_first_name).text
+        except:
+            return ""
 
     def get_error_last_name(self):
-        return self.driver.find_element('xpath', self.error_last_name).text
+        try:
+            return self.driver.find_element('xpath', self.error_last_name).text
+        except:
+            return ""
 
     def get_error_email(self):
-        return self.driver.find_element('xpath', self.error_email).text
+        try:
+            return self.driver.find_element(By.ID, self.error_email_id).text
+        except:
+            return ""
 
     def get_error_password(self):
-        return self.driver.find_element('xpath', self.error_password).text
+        try:
+            return self.driver.find_element('xpath', self.error_password).text
+        except:
+            return ""
 
     def get_alert(self):
-        return self.driver.find_element('xpath', self.alert).text
+        try:
+            return self.driver.find_element('xpath', self.alert).text
+        except:
+            return ""
 
     def get_page_title(self):
         return self.driver.title
