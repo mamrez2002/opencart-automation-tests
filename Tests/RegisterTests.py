@@ -18,8 +18,6 @@ class RegisterTests(unittest.TestCase):
         cls.driver = uc.Chrome(driver_executable_path=ChromeDriverManager().install())
         cls.driver.implicitly_wait(10)
         cls.register_page = RegisterPage(cls.driver)
-        # cls.driver.get("https://demo.opencart.com/en-gb?route=account/register")
-        # input()
 
 
     def setUp(self):
@@ -186,7 +184,11 @@ class RegisterTests(unittest.TestCase):
 
     def tearDown(self):
         self.driver.delete_cookie('demo.opencart.com')
-        
+
+    @classmethod
+    def tearDownClass(cls):
+        cls.driver.quit()
+
 
 
 

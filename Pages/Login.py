@@ -34,13 +34,25 @@ class LoginPage:
         self.driver.find_element('xpath', self.register_link).click()
 
     def get_error_email(self):
-        return self.driver.find_element('xpath', self.error_email).text
+        try:
+            return self.driver.find_element('xpath', self.error_email).text
+        except:
+            return ""
 
     def get_error_password(self):
-        return self.driver.find_element('xpath', self.error_password).text
+        try:
+            return self.driver.find_element('xpath', self.error_password).text
+        except:
+            return ""
 
     def get_alert(self):
-        return self.driver.find_element('xpath', self.alert).text
+        try:
+            return self.driver.find_element('xpath', self.alert).text
+        except:
+            return ""
 
     def get_page_title(self):
-        return self.driver.title
+        try:
+            return self.driver.title
+        except:
+            return ""
