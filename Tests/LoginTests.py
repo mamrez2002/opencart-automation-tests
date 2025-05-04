@@ -21,7 +21,7 @@ class RegisterTests(unittest.TestCase):
 
 
     def setUp(self):
-        self.driver.get("https://demo.opencart.com/en-gb?route=account/register")
+        self.driver.get("https://demo.opencart.com/en-gb?route=account/login")
         time.sleep(1)
 
 
